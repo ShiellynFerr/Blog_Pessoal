@@ -6,7 +6,7 @@ public class UsuarioLogin {
 	//classe de suporte para fazer acesso a sua aplicação
 	
 	private long id;
-	
+
 	private String nome;
 	
 	private String usuario;
@@ -47,4 +47,11 @@ public class UsuarioLogin {
 		this.token = token;
 	}
 	 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

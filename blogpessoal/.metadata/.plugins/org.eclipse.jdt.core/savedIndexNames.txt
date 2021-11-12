@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\usuario\Documents\workspace-spring-tool-suite-4-4.12.0.RELEASE\blogpessoal\.metadata\.plugins\org.eclipse.jdt.core
