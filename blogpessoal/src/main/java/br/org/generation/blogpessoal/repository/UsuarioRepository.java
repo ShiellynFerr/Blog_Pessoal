@@ -12,7 +12,10 @@ import br.org.generation.blogpessoal.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Optional<Usuario> findByUsuario(String usuario); //puxando da model Usuario
+	
+	//Método criado para a Sessão de testes
+		public List<Usuario> findAllByNomeContainingIgnoreCase(String nome);
+
 
 	
-
 }

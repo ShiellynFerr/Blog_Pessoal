@@ -40,6 +40,26 @@ public class Usuario {
 	private List<Postagem> postagem;
 
 	
+	
+
+	//construtor
+	public Usuario(long id,  String nome,
+			 String usuario, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+	
+	
+
+	//construtor nulo sem paramêtros
+	public Usuario() {
+		
+	}
+	
+
+   //métodos getters e setters
 
 	public long getId() {
 		return id;

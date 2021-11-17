@@ -26,4 +26,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return usuario.map(UserDetailsImpl::new).get();  //se encontrar usuário, cria o objeto UserDetailsImpl e pega o usuário e senha
 	}
 
+	 
 }
