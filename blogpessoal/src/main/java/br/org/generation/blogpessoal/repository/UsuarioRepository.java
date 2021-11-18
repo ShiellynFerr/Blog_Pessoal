@@ -13,9 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Optional<Usuario> findByUsuario(String usuario); //puxando da model Usuario
 	
-	//Método criado para a Sessão de testes
+	//Método criado para a Sessão de testes // Método que busca um usuário pelo seu usuario (email).
 		public List<Usuario> findAllByNomeContainingIgnoreCase(String nome);
-
-
 	
 }

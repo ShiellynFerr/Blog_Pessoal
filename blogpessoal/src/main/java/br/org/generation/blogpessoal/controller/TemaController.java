@@ -20,49 +20,52 @@ import br.org.generation.blogpessoal.repository.TemaRepository;
 
 @RestController
 @RequestMapping("/tema")
-@CrossOrigin(origins = "*", allowedHeaders = "*") //liberar requisições de qualquer origem ou uma origem especifica
+@CrossOrigin(origins = "*", allowedHeaders = "*") // liberar requisições de qualquer origem ou uma origem especifica
 public class TemaController {
 
-	
 	@Autowired
 	private TemaRepository temaRepository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Tema>> getAll(){
-		
+	public ResponseEntity<List<Tema>> getAll() {
+
 		return ResponseEntity.ok(temaRepository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Tema> getById(@PathVariable long id) {
 		return temaRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
-		.orElse(ResponseEntity.notFound().build());
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping("/descricao/{descricao}")
-	public ResponseEntity<List<Tema>> getByName(@PathVariable String  descricao ){
+	public ResponseEntity<List<Tema>> getByName(@PathVariable String descricao) {
 		return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
-		}
-		
-		@PostMapping
-		public ResponseEntity<Tema> post(@RequestBody Tema tema) {
-			
-			return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
-		}
-		
-		
-		@PutMapping
-	    public ResponseEntity<Tema> putTema(@RequestBody Tema tema) {
-	        return ResponseEntity.status(HttpStatus.OK).body(temaRepository.save(tema));
-	    }
-		
-		
-		@DeleteMapping("/{id}")
-		public void delete(@PathVariable long id) {
-			
-			temaRepository.deleteById(id);
-		}
 	}
-	
-	
 
+	@PostMapping
+	public ResponseEntity<Tema> post(@RequestBody Tema tema) {
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
+	}
+
+	@PutMapping
+	public ResponseEntity<Tema> putTema(@RequestBody Tema tema) {
+	
+		return temaRepository.findById(tema.getId())
+				.map(resposta -> ResponseEntity.ok().body(temaRepository.save(tema)))
+				.orElse(ResponseEntity.notFound().build());
+	}
+
+	@DeleteMapping("/{id}")
+		public ResponseEntity<?> deletePostagem(@PathVariable long id) {
+			
+			return temaRepository.findById(id)
+				.map(resposta -> {
+					temaRepository.deleteById(id);
+					return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+				})
+				.orElse(ResponseEntity.notFound().build());	
+			}
+	
+}

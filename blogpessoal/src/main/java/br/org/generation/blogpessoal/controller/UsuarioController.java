@@ -41,18 +41,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuarioRepository.findAll());
 	}
 	
-	/* SELECT * FROM tb_usuarios WHERE usuario LIKE '%?%';
-	@GetMapping("/usuario/{usuario}")
-	public ResponseEntity<List<Usuario>> getByUsuario (@PathVariable String usuario) {
-		return ResponseEntity.ok(usuarioRepository.findByUsuario(usuario));
-	}*/
 	
-	/*Executa o método autenticarUsuario da classe de serviço para efetuar
-	 * o login na api. O método da classe Controladora checa se deu certo e
-	 * exibe as mensagens (Response Status) pertinentes. 
-	 * 
-	 * Caso o login tenha sido bem sucedido, os dados do usuário e o token 
-	 * são exibidos. */
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> login(@RequestBody Optional<UsuarioLogin> user) {
 		return usuarioService.autenticarUsuario(user)
@@ -66,6 +55,7 @@ public class UsuarioController {
 	 * 
 	 * Caso cadastro tenha sido bem sucedido, os dados do usuário são 
 	 * exibidos. */
+	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
 		return usuarioService.cadastrarUsuario(usuario)
@@ -80,6 +70,7 @@ public class UsuarioController {
 	 * 
 	 * Caso a atualização tenha sido bem sucedida, os dados do usuário 
 	 * atualizados são exibidos. */
+	
 	@PutMapping("/atualizar")
 	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
 		return usuarioService.atualizarUsuario(usuario)
